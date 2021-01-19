@@ -1,11 +1,15 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>using sslyze in Django app</title>
+
+    <link rel="stylesheet" type="text/css" href="{% static 'demo_sslyze/index.css' %}">
+    <script type="text/javascript" src="{% static 'demo_sslyze/index.js' %}"></script>
 </head>
 <body>
-    <h1>Hello world</h1>
-    This is sslyze
+    <h1>SSLyze</h1>
 
     <form action="/sslyze/" method="post"> 
         {% csrf_token %}
@@ -13,9 +17,6 @@
         <input type="submit" value="Run SSLyze">
     </form>
 
-    <br><br>
-    {{ status }}
-    <br><br>
-    <span style="white-space: pre-wrap; font-family: monospace">{{ output }}</span>
+    <span id="output" data-task-id="{{ task_id }}">{{ output }}</span>
 </body>
 </html>

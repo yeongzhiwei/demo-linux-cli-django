@@ -17,10 +17,11 @@ from django.contrib import admin
 from django.urls import path, re_path
 from django.views.generic.base import RedirectView
 
-from demo_sslyze.views import DemoSslyze
+from demo_sslyze.views import DemoSslyze, SslyzeResult
 
 urlpatterns = [
     re_path(r'^$', RedirectView.as_view(url='/sslyze', permanent=False), name='home'),
+    path('sslyze/results/<str:task_id>/', SslyzeResult.as_view(), name='sslyze-result'),
     path('sslyze/', DemoSslyze.as_view(), name='sslyze'),
     path('admin/', admin.site.urls),
 ]
